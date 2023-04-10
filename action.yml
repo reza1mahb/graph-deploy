@@ -35,6 +35,7 @@ runs:
   steps:
     - id: install-concat-stream
       run: yarn global add github:mihirgupta0900/concat-stream#master
+      shell: bash
     - id: install-graph-cli
       run: |
         yarn global add @graphprotocol/graph-cli@0.25.3
