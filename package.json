@@ -24,5 +24,8 @@
   "dependencies": {
     "@graphprotocol/graph-cli": "0.25.3",
     "@actions/core": "^1.2.6"
+  },
+  "resolutions": {
+    "@graphprotocol/graph-cli/ipfs-http-client/concat-stream": "github:mihirgupta0900/concat-stream#master"
   }
 }
