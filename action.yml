@@ -33,19 +33,11 @@ outputs:
 runs:
   using: "composite"
   steps:
-    - id: install-concat-stream
-      run: yarn global add github:mihirgupta0900/concat-stream#master
-      shell: bash
-    - id: install-graph-cli
-      run: |
-        yarn global add @graphprotocol/graph-cli@0.25.3
-        echo "$(yarn global bin)" >> $GITHUB_PATH
-      shell: bash
     - id: deploy
       run: |
         if [ "${{inputs.graph_deploy_studio}}" = "true" ]; then
-           graph deploy --studio --deploy-key ${{inputs.graph_deploy_key}} ${{inputs.graph_subgraph_name}} ${{inputs.graph_config_file}} --version-label ${{inputs.graph_version_label}}
+           yarn run graph deploy --studio --deploy-key ${{inputs.graph_deploy_key}} ${{inputs.graph_subgraph_name}} ${{inputs.graph_config_file}} --version-label ${{inputs.graph_version_label}}
         else
-           graph deploy --access-token ${{inputs.graph_access_token}} ${{inputs.graph_account}}/${{inputs.graph_subgraph_name}} ${{inputs.graph_config_file}} --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/
+           yarn run graph deploy --access-token ${{inputs.graph_access_token}} ${{inputs.graph_account}}/${{inputs.graph_subgraph_name}} ${{inputs.graph_config_file}} --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/
         fi
       shell: bash
