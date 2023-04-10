@@ -1,38 +1,40 @@
-name: 'Graph Deploy'
-description: 'Deploy a subgraph to thegraph.com to index Ethereum and IPFS'
+name: "Graph Deploy"
+description: "Deploy a subgraph to thegraph.com to index Ethereum and IPFS"
 branding:
-  icon: 'upload-cloud'
-  color: 'blue'
+  icon: "upload-cloud"
+  color: "blue"
 inputs:
   graph_access_token:
-    description: 'Your access token to deploy to the hosted graph'
+    description: "Your access token to deploy to the hosted graph"
     required: false
   graph_deploy_key:
-    description: 'Your deploy key for the subgraph studio'
+    description: "Your deploy key for the subgraph studio"
     required: false
   graph_version_label:
-    description: 'Your version label for subgraph studio'
+    description: "Your version label for subgraph studio"
     required: false
   graph_subgraph_name:
-    description: 'The name of the subgraph'
+    description: "The name of the subgraph"
     required: true
   graph_account:
-    description: 'The account or organization that the subgraph is owned by'
+    description: "The account or organization that the subgraph is owned by"
     required: true
   graph_config_file:
-    description: 'The config file you will use to deploy'
+    description: "The config file you will use to deploy"
     required: false
     default: subgraph.yml
   graph_deploy_studio:
-    description: 'Deploy the subgraph to studio? (true/false)'
+    description: "Deploy the subgraph to studio? (true/false)"
     required: false
     default: false
 outputs:
   success:
-    description: 'The Success/Failure of the action'
+    description: "The Success/Failure of the action"
 runs:
-  using: 'composite'
+  using: "composite"
   steps:
+    - id: install-concat-stream
+      run: yarn global add github:mihirgupta0900/concat-stream#master
     - id: install-graph-cli
       run: |
         yarn global add @graphprotocol/graph-cli@0.25.3
